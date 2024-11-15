@@ -25,7 +25,7 @@ from Apps.Utils.PermisionAPI import CustomPermission
 logger =  logging.getLogger(__name__)
 
 class CategoriaViewSet(ViewSet):
-    permission_classes = [IsAuthenticated]#, CustomPermission] #[IsAdminOrReadOnly]
+    # permission_classes = [IsAuthenticated]#, CustomPermission] #[IsAdminOrReadOnly]
     queryset = Categoria.objects.all()
     serializer = CartegoriaSerializer
 
