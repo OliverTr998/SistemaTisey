@@ -121,10 +121,32 @@ WSGI_APPLICATION = 'Config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
+    #Conexcion SQL
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
+        # Configuracion Produccion
+        'ENGINE': 'mssql',
+        'NAME': 'TiseyDb',
+        'USER': 'OliverTr_SQLLogin_2',
+        'PASSWORD': '4uz2v2jetx',
+        'HOST': 'DBTisey.mssql.somee.com',
+
+        # # Configuracion Local
+        # 'ENGINE': 'mssql',
+        # 'NAME': 'TiseyDb',
+        # 'HOST': '.',
+
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'trusted_connection': 'yes'
+        },
+    },
 }
 
 # Configura los detalles de conexión a Papertrail
