@@ -131,7 +131,7 @@ DATABASES = {
 
         # Configuracion Produccion
         'ENGINE': 'mssql',
-        'NAME': 'TiseyDb',
+        'NAME': 'DBTisey',
         'USER': 'OliverTr_SQLLogin_2',
         'PASSWORD': '4uz2v2jetx',
         'HOST': 'DBTisey.mssql.somee.com',
