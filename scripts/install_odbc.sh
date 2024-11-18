@@ -1,21 +1,17 @@
 #!/bin/bash
 
-echo "Actualizando paquetes del sistema..."
-apt-get update && apt-get install -y \
-    curl \
-    apt-transport-https \
-    gnupg \
-    unixodbc-dev
+# Instalar dependencias necesarias
+apt-get update
+apt-get install -y curl apt-transport-https ca-certificates gnupg
 
-echo "Agregando el repositorio de Microsoft..."
+# Agregar la clave pública de Microsoft
 curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+
+# Agregar el repositorio de Microsoft para ODBC Driver 17
 curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
 
-echo "Instalando el controlador ODBC 17..."
-apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql17
+# Actualizar el índice de paquetes
+apt-get update
 
-echo "Limpieza de paquetes..."
-apt-get clean
-rm -rf /var/lib/apt/lists/*
-
-echo "El controlador ODBC 17 se instaló correctamente."
+# Instalar ODBC Driver 17
+apt-get install -y msodbcsql17
