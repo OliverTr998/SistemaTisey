@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: mi-aplicacion
+    env: python
+    buildCommand: |
+      # Ejecuta el script para instalar ODBC
+      sh scripts/install_odbc.sh
+      
+      # Instala las dependencias de Python
+      pip install --no-cache-dir -r requirements.txt
+    startCommand: |
+      # Ejecuta migraciones
+      python manage.py migrate --noinput
+
+      # Inicia la aplicación con Gunicorn
+      gunicorn mi_proyecto.wsgi:application --bind 0.0.0.0:8000
+    plan: free
+    region: oregon
